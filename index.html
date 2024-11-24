@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIANCA DATOS</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header style="text-align:initial;">
+        <img src="/static/logo.png" alt="Logo Facultad de Ingeniería Económica" style="width: 200px;">
+        <h1>BASE DE DATOS</h1>
+    </header>
+    <header style="text-align: center;"
+        <h1>Buscador de base de datos</h1>
+     </header>
+<main>
+    <section>
+
+    <div id="form-buscar-container">
+        <form id="form-buscar">
+            <select id="criterio" required>
+                <option value="codigo">Código</option>
+                <option value="autor">Autor</option>
+                <option value="titulo">Título</option>
+            </select>
+            <input type="text" id="termino" placeholder="Escribe el término de búsqueda" required>
+            <button type="submit">Buscar</button>
+        </form>
+        <div id="resultados"></div>
+    </div>
+
+    <script>
+        document.getElementById('form-buscar').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            const criterio = document.getElementById('criterio').value;
+            const termino = document.getElementById('termino').value;
+    
+            fetch('/buscar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'criterio=' + encodeURIComponent(criterio) + '&termino=' + encodeURIComponent(termino)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultadosDiv = document.getElementById('resultados');
+                resultadosDiv.innerHTML = '';
+    
+                if (data.length === 0) {
+                    resultadosDiv.innerHTML = '<p>No se encontraron resultados.</p>';
+                } else {
+                    let tabla = '<table><tr><th>Código</th><th>Autor</th><th>Título</th><th>Año</th></tr>';
+                    data.forEach(fila => {
+                        tabla += '<tr>';
+                        tabla += `<td>${fila.codigo}</td>`;
+                        tabla += `<td>${fila.autor}</td>`;
+                        tabla += `<td>${fila.titulo}</td>`;
+                        tabla += `<td>${fila.año}</td>`;
+                        tabla += '</tr>';
+                    });
+                    tabla += '</table>';
+                    resultadosDiv.innerHTML = tabla;
+                }
+            });
+        });
+    </script>
+    </section>
+</main>
+</body>
+</html>
+
