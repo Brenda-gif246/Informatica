@@ -1,0 +1,136 @@
+/* Fondo de la página */
+body {
+    background-image: url('/static/fondo.jpg');
+    background-size: cover;
+    background-position: bottom; /* Muestra la parte inferior de la imagen */
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Encabezado con título */
+header {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 3em; /* Tamaño llamativo para "BASE DE DATOS" */
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffcc00; /* Color destacado */
+    text-shadow: 2px 2px 4px #000; /* Sombra para resaltar */
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.5em; /* Tamaño más grande para "Buscador de base de datos" */
+    font-weight: normal;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000;
+    margin: 10px 0 10px 0; /* Espaciado adecuado */
+}
+
+/* Contenedor del formulario */
+#form-buscar-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 50px;
+    border-radius: 8px;
+    width: 500px;
+    margin-top: 10px; /* Reduce el margen superior */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Eliminar el logo */
+header img {
+    display: none; /* Oculta el logo */
+}
+
+/* Estilo del formulario */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+button {
+    padding: 8px 12px;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Tabla de resultados */
+table {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#resultados {
+    max-height: 400px;  /* Define una altura máxima para el contenedor */
+    overflow-y: auto;   /* Activa el scroll vertical si el contenido excede la altura */
+    border: 1px solid #ccc;  /* Agrega un borde para distinguir la zona de resultados */
+    padding: 10px;      /* Espacio interno para mejorar la presentación */
+    margin-top: 20px;   /* Espacio superior para separarlo del formulario */
+    background-color: #f9f9f9; /* Fondo para diferenciar la sección */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+    
+    h2 {
+        font-size: 1.2em;
+    }
+
+    #form-buscar-container {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    input[type="text"], button {
+        font-size: 1em;
+    }
+    
+    th, td {
+        font-size: 0.9em;
+        padding: 6px;
+    }
+}
+
+
+
